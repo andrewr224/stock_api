@@ -5,7 +5,7 @@ module Stocks
     before { context.stock = stock }
 
     def call
-      save
+      save!
 
       return if stock.persisted?
 
@@ -21,7 +21,7 @@ module Stocks
       @stock ||= bearer.stocks.new(context.params)
     end
 
-    def save
+    def save!
       ActiveRecord::Base.transaction do
         stock.save! if stock.valid?
       end

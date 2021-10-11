@@ -4,7 +4,7 @@ require "rails_helper"
 
 describe "POST /stocks", type: :request do
   let(:params) do
-    { stock: stock_attrs.merge(bearer: bearer_name) }
+    { stock: stock_attrs.merge(bearer_name: bearer_name) }
   end
 
   let(:stock_attrs) { attributes_for(:stock) }

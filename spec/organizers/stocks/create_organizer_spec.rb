@@ -6,7 +6,7 @@ describe Stocks::CreateOrganizer do
   subject(:result) { described_class.call(context) }
 
   let(:context) do
-    { params: stock_attrs.merge(bearer: bearer_name) }
+    { params: stock_attrs.merge(bearer_name: bearer_name) }
   end
 
   let(:stock_attrs) { attributes_for(:stock) }
