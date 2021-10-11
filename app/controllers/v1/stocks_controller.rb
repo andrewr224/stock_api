@@ -2,7 +2,12 @@
 
 module V1
   class StocksController < ApplicationController
-    before_action :find_stock, only: :update
+    before_action :find_bearer, only: :index
+    before_action :find_stock,  only: :update
+
+    def index
+      json_response StockSerializer.new(@bearer.stocks)
+    end
 
     def create
       result = Stocks::CreateOrganizer.call(params: stock_params)
@@ -17,7 +22,7 @@ module V1
 
       return respond_with_errors(result.errors) if result.failure?
 
-      json_response StockSerializer.new(result.stock), status: :ok
+      json_response StockSerializer.new(result.stock)
     end
 
     private
@@ -43,6 +48,10 @@ module V1
 
     def find_stock
       @stock = Stock.find(params[:id])
+    end
+
+    def find_bearer
+      @bearer = Bearer.find(params[:bearer_id])
     end
   end
 end

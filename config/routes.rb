@@ -3,5 +3,9 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     resources :stocks, only: %i[create update]
+
+    resources :bearers, only: %i[] do
+      resources :stocks, only: :index
+    end
   end
 end
