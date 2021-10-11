@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_145733) do
+ActiveRecord::Schema.define(version: 2021_10_11_074502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 2021_10_08_145733) do
     t.bigint "bearer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
     t.index ["bearer_id"], name: "index_stocks_on_bearer_id"
+    t.index ["discarded_at"], name: "index_stocks_on_discarded_at"
     t.index ["name"], name: "index_stocks_on_name", unique: true
   end
 

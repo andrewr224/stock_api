@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :bearer do
-    name { Faker::Name.unique.name }
+    sequence(:name) { |n| n.to_s + Faker::Name.name }
   end
 end

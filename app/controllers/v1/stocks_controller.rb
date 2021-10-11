@@ -3,7 +3,7 @@
 module V1
   class StocksController < ApplicationController
     before_action :find_bearer, only: :index
-    before_action :find_stock,  only: :update
+    before_action :find_stock,  only: %i[update destroy]
 
     def index
       json_response StockSerializer.new(@bearer.stocks)
@@ -23,6 +23,12 @@ module V1
       return respond_with_errors(result.errors) if result.failure?
 
       json_response StockSerializer.new(result.stock)
+    end
+
+    def destroy
+      Stocks::Destroy.call(stock: @stock)
+
+      head :ok
     end
 
     private

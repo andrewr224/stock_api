@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "PATCH /stock", type: :request do
+describe "PATCH /stock/:id", type: :request do
   let(:params) do
     { stock: stock_attrs }
   end
