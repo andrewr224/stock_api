@@ -8,5 +8,9 @@ FactoryBot.define do
     price           { rand(1..10) }
 
     association :bearer, factory: :bearer, strategy: :build
+
+    trait :discarded do
+      discarded_at { Time.zone.now }
+    end
   end
 end

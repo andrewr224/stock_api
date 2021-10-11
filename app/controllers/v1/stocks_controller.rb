@@ -6,7 +6,7 @@ module V1
     before_action :find_stock,  only: %i[update destroy]
 
     def index
-      json_response StockSerializer.new(@bearer.stocks)
+      json_response StockSerializer.new(@bearer.stocks.kept)
     end
 
     def create
